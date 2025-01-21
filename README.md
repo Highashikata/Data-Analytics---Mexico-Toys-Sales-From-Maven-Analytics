@@ -15,4 +15,6 @@ to deeply understand all that is at stake with our data.
 After the step of data transformation, the next step is Data Modeling, we begin by identifying the diffrent Fact and Dim tables and we need to also verify the different relationships between Facts and Dims in order to see the consistency of these relations.
 This is the first look of our Data Model.
 
-<img width="340" alt="image" src="https://github.com/user-attachments/assets/c76f80d1-1e48-4940-864f-3046459005cb" />
+<div align="center">
+  <img width="340" alt="image" src="https://github.com/user-attachments/assets/c76f80d1-1e48-4940-864f-3046459005cb" />
+</div>
