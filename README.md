@@ -54,6 +54,28 @@ ADDCOLUMNS (
     "YearMonth", FORMAT([Date], "YYYY-MM")
 )
 ```
+### **Method 2 : a simple way of creating the Date Table**
+```
+Calendrier = 
+VAR StartDate =
+    MIN ( Fact_Sales[Date] )
+VAR EndDate =
+    MAX ( Fact_Sales[Date] )
+VAR DateTable =
+    ADDCOLUMNS (
+        CALENDAR ( StartDate, EndDate ),
+        "QuarterNo", QUARTER ( [Date] ),
+        "QuarterName", FORMAT ( [Date], "\QQ" ),
+        "MonthNo", MONTH ( [Date] ),
+        "MonthName", FORMAT ( [Date], "MMM" )
+    )
+RETURN
+    DateTable
+```
+
+**NB:** Amongest the best practices in Power BI, is that after we create a Date Table or a Calendrier table, we select in our case *QuarterName* and *MonthName*, and we sort them using the columns *QuarterNo* and *MonthNo*, so that we will have the Months and quarters in 
+the correct order while putting them in a line Chart.
+
 
 With this method, we have created a Calendar table that takes the Mininum date of all tables and the Maximum date and gives us a range of dates using these two, and with this range, we've created additional columns like Year, MonthNumber, MonthName ... In order to have more options
 while manipulating our data.
