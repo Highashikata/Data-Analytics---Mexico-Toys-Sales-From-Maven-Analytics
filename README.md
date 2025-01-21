@@ -82,7 +82,7 @@ while manipulating our data.
 
 Here's an updated version of our Data Model, after the addition of the Calendar Table.
 <div align="center">
-  <img width="857" alt="image" src="https://github.com/user-attachments/assets/dba7c95b-243b-4b56-9831-76af6e970346" />
+  <img width="867" alt="image" src="https://github.com/user-attachments/assets/70a1562c-a161-4142-b2e0-d81b23605c6b" />
 </div>
 
 
@@ -93,3 +93,116 @@ Here's an updated version of our Data Model, after the addition of the Calendar 
 * Sales by Year / Quarter / Semester - Line Chart.
 * Sales by store location over time - Line Chart.
 * KPIs / Cards for Sales - Cards
+
+
+### Measures and calculated columns, using DAX.
+Amongst the best practices in Power BI, is putting all the measures in a dedicated measures tables (called mesures in our case), and to organize your measures, you ought to put them into different folders, in order to facilitate the navigation.
+
+<div align="center">
+  <img width="173" alt="image" src="https://github.com/user-attachments/assets/cb5c97bd-ace9-492b-8c1d-989300fd5181" />
+</div>
+
+```
+// Comparisons
+YoY Sales = 
+[Total Sales Units] - [LY Sales]
+
+YoY Sales % = 
+DIVIDE([YoY Sales], [LY Sales], 0)
+
+// Current Year Metrics
+YTD Sales = 
+CALCULATE(
+    [Total Sales Units], 
+    DATESYTD(Dim_Date[Date])
+)
+
+// Inventory
+Days to Stock Out = 
+DIVIDE(
+    [Stock Remaining by Product], 
+    AVERAGEX(Fact_Sales, Fact_Sales[Units])
+)
+
+Out of Stock = 
+IF(SUM(Fact_Inventory[Stock_On_Hand]) = 0, "Yes", "No")
+
+Stock Remaining by Product = 
+CALCULATE(SUM(Fact_Inventory[Stock_On_Hand]), Dim_Product[Product_ID])
+
+Stock Remaining by Store = 
+CALCULATE(SUM(Fact_Inventory[Stock_On_Hand]), Dim_Stores[Store_Name])
+
+Stock Utilization % = 
+DIVIDE([Total Sales Units], [Total Stock on Hand], 0)
+
+Total Inventory Value = 
+SUMX(
+    Fact_Inventory, 
+    Fact_Inventory[Stock_On_Hand] * RELATED(Dim_Product[Product_Price])
+)
+
+Total Stock on Hand = 
+SUM(Fact_Inventory[Stock_On_Hand])
+
+// Last Year Metrics
+LY Sales = 
+CALCULATE(
+    [Total Sales Units], 
+    SAMEPERIODLASTYEAR(Dim_Date[Date])
+)
+
+LY YTD Sales = 
+CALCULATE(
+    [Total Sales Units], 
+    DATESYTD(SAMEPERIODLASTYEAR(Dim_Date[Date]))
+)
+
+// Performance Metrics
+Inventory Turnover Rate = 
+DIVIDE([Total Sales Units], [Total Stock on Hand], 0)
+
+Sales to Stock Ratio by Store = 
+DIVIDE([Total Sales by Store], [Stock Remaining by Store], 0)
+
+// Sales
+Sales by City = 
+CALCULATE(SUM(Fact_Sales[Units]), Dim_Stores[Store_City])
+
+Total Sales by Store = 
+CALCULATE(SUM(Fact_Sales[Units]), Dim_Stores[Store_Name])
+
+Total Sales per Product = 
+CALCULATE(SUM(Fact_Sales[Units]), Dim_Product)
+
+Total Sales Units = 
+SUM(Fact_Sales[Units])
+
+Total Transactions = 
+COUNT(Fact_Sales[Sale_ID])
+
+// Time Analysis
+First Sale Date = 
+MIN(Fact_Sales[Date])
+
+Stores Opened Before 2023 = 
+CALCULATE(
+    COUNT(Dim_Stores[Store_ID]),
+    Dim_Stores[Store_Open_Date] < DATE(2023, 1, 1)
+)
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
