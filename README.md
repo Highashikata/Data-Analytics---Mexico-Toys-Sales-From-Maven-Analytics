@@ -16,7 +16,7 @@ After the step of data transformation, the next step is Data Modeling, we begin 
 This is the first look of our Data Model.
 
 <div align="center">
-  <img width="340" alt="image" src="https://github.com/user-attachments/assets/c76f80d1-1e48-4940-864f-3046459005cb" />
+  <img width="895" alt="image" src="https://github.com/user-attachments/assets/89a5ccc7-cd0c-4029-8800-1b33507de3f0" />
 </div>
 
 ### Data Model optimization
@@ -60,7 +60,7 @@ while manipulating our data.
 
 Here's an updated version of our Data Model, after the addition of the Calendar Table.
 <div align="center">
-  <img width="662" alt="image" src="https://github.com/user-attachments/assets/2af342c0-710f-494a-b6b5-81ccdced5642" />
+  <img width="857" alt="image" src="https://github.com/user-attachments/assets/dba7c95b-243b-4b56-9831-76af6e970346" />
 </div>
 
 
