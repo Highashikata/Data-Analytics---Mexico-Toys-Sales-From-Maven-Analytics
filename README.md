@@ -25,7 +25,7 @@ In every Power BI project, when we try to analyze our data and track the eveolut
 ### **Method 1 :**
 
 ```
-calendrier = 
+Calendar = 
 VAR MinDate = 
     MINX(
         UNION(
