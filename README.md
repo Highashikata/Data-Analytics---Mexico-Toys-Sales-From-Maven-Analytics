@@ -53,9 +53,16 @@ ADDCOLUMNS (
     "WeekdayName", FORMAT([Date], "dddd"),
     "YearMonth", FORMAT([Date], "YYYY-MM")
 )
-
-
 ```
+
+With this method, we have created a Calendar table that takes the Mininum date of all tables and the Maximum date and gives us a range of dates using these two, and with this range, we've created additional columns like Year, MonthNumber, MonthName ... In order to have more options
+while manipulating our data.
+
+Here's an updated version of our Data Model, after the addition of the Calendar Table.
+<div align="center">
+  <img width="662" alt="image" src="https://github.com/user-attachments/assets/2af342c0-710f-494a-b6b5-81ccdced5642" />
+</div>
+
 
 
 ### Business Questions to answer and the choice of visuals.
