@@ -18,3 +18,49 @@ This is the first look of our Data Model.
 <div align="center">
   <img width="340" alt="image" src="https://github.com/user-attachments/assets/c76f80d1-1e48-4940-864f-3046459005cb" />
 </div>
+
+### Data Model optimization
+In every Power BI project, when we try to analyze our data and track the eveolution in time, we need to create a Calendar table, it's one of the best practices.
+
+### **Method 1 :**
+
+```
+calendrier = 
+VAR MinDate = 
+    MINX(
+        UNION(
+            SELECTCOLUMNS('Dim_Stores', "Date", 'Dim_Stores'[Store_Open_Date]),
+            SELECTCOLUMNS('Fact_Sales', "Date", 'Fact_Sales'[Date])
+        ),
+        [Date]
+    )
+VAR MaxDate = 
+    MAXX(
+        UNION(
+            SELECTCOLUMNS('Dim_Stores', "Date", 'Dim_Stores'[Store_Open_Date]),
+            SELECTCOLUMNS('Fact_Sales', "Date", 'Fact_Sales'[Date])
+        ),
+        [Date]
+    )
+RETURN
+ADDCOLUMNS (
+    CALENDAR (DATE(YEAR(MinDate), MONTH(MinDate), DAY(MinDate)), DATE(YEAR(MaxDate), MONTH(MaxDate), DAY(MaxDate))),
+    "Year", YEAR([Date]),
+    "MonthNumber", MONTH([Date]),
+    "MonthName", FORMAT([Date], "MMMM"),
+    "Quarter", "Q" & QUARTER([Date]),
+    "Weekday", WEEKDAY([Date]),
+    "WeekdayName", FORMAT([Date], "dddd"),
+    "YearMonth", FORMAT([Date], "YYYY-MM")
+)
+
+
+```
+
+
+### Business Questions to answer and the choice of visuals.
+* What is the profit by Product - Bar Graph (Top 10).
+* What is the profit by Store - Bar Graph (Top 10).
+* Sales by Year / Quarter / Semester - Line Chart.
+* Sales by store location over time - Line Chart.
+* KPIs / Cards for Sales - Cards
