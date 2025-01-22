@@ -194,7 +194,23 @@ CALCULATE(
 ```
 
 
+### Report Development
+Canvas settings : Custom 1100 x 1500 px.
+Colors:
+- BG: #F2F2F2.
+- Bar: #325959.
+<div align="center">
+  <img width="528" alt="Visual1" src="https://github.com/user-attachments/assets/ddcb84ee-e99d-42a7-914b-c544b70bd2a2" />
+</div>
 
+
+
+<div align="center">
+  <img width="529" alt="Visual2" src="https://github.com/user-attachments/assets/cc8ef74a-081a-4cf3-ab9a-df53b730e9a1" />
+</div>
+
+
+  
 
 
 
