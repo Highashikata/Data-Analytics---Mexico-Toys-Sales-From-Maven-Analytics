@@ -1,5 +1,8 @@
 # Data-Analytics---Mexico-Toys-Sales-From-Maven-Analytics
-This is a project to apply some of Power BI knowledge to a Maven Analytics problem
+This is a project to apply some of Power BI knowledge to a Maven Analytics problem.
+
+You can also read the corresponding article that I've written in medium about that project:
+[Medium Article](https://medium.com/@bassam.data.mediator/unlocking-insights-an-end-to-end-power-bi-data-analytics-project-using-the-mexico-toys-sales-23b878ddad54).
 
 ### Data Source.
 In this project, we will download data from Maven Analytics website, this is the link to explore all their Datasets: [Maven Analytics Datasets](https://www.mavenanalytics.io/data-playground?page=2).
